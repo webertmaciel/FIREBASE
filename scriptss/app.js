@@ -40,18 +40,31 @@ const TURMA = "turmaA";
 
 // atualizar a base de dados dos campos respectivos existentes
 
-db.collection(TURMA).doc("AlunoNovo").update({
-    novo: "webert",
-    sobrenome: "maciel",
-    notas: { nota1: 9.6, nota2: 7.5 },
-    faltas: 5
-}).then((doc) => {
-    console.log("documento inserido com sucesso");
-}).catch(err => {
-    console.log(err);
-})
+// db.collection(TURMA).doc("AlunoNovo").update({
+//     novo: "webert",
+//     sobrenome: "maciel",
+//     notas: { nota1: 9.6, nota2: 7.5 },
+//     faltas: 5
+// }).then((doc) => {
+//     console.log("documento inserido com sucesso");
+// }).catch(err => {
+//     console.log(err);
+// })
 
 
+// apagar campo do documento
+
+
+// db.collection(TURMA).doc("AlunoNovo").update({
+
+//     cidades: firebase.firestore.FieldValue.delete()
+
+
+// }).then(() => {
+//     console.log("documento inserido com sucesso");
+// }).catch(err => {
+//     console.log(err);
+// })
 
 
 
@@ -91,4 +104,83 @@ db.collection(TURMA).doc("AlunoNovo").update({
 //         console.log(aluno.nome, aluno.sobrenome);
 //     })
 // })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+let auth = firebase.auth()
+
+
+// como criar um usuario e e-mail por firestor usando codigo
+
+// let newUserEmail = "novoteste@teste.com"
+// let newUserPassword = "123abc"
+
+// let auth = firebase.auth()
+
+// auth.createUserWithEmailAndPassword(newUserEmail, newUserPassword).then(user => {
+//     console.log(user)
+// }).catch(err => {
+//     console.log(err)
+// })
+
+// fazer login com codigo no firebase
+
+
+// function login() {
+//     let userEmail = "esteteste@teste.com";
+//     let userPassword = "123abc"
+
+//     auth.signInWithEmailAndPassword(userEmail, userPassword).then(loggedUser => {
+//         console.log(loggedUser)
+//     }).catch(err => {
+//         console.log(err)
+//     })
+
+//     // let user = auth.currentUser;
+//     // console.log(user);
+
+
+// }
+// login()
+
+
+
+let user = auth.currentUser;
+console.log(user);
+auth.onAuthStateChanged(user => {
+    if (user) {
+        console.log(user)
+    } else {
+        console.log("ninquem logado")
+    }
+});
+
+
+function logout() {
+    auth.signOut().then(obj => {
+        console.log(obj)
+    }).catch(error => {
+        console.log(error)
+    })
+}
+setTimeout(logout, 2000)
+
 
